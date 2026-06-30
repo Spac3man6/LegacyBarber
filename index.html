@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>Legacy Barbershop | China, N.L. – Cortes, Barba y Afeitado Clásico</title>
+  <meta name="description"
+    content="Legacy Barbershop en China, Nuevo León sigue completamente abierto. Cortes, barba, afeitado clásico, diseños y más. Agenda por WhatsApp o llama al 81 8206 9954. Arturo B. de la Garza 510, Col. Centro." />
+  <meta name="theme-color" content="#0B1C3F" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Legacy Barbershop | China, N.L." />
+  <meta property="og:description"
+    content="Seguimos completamente abiertos y listos para atenderte. Cortes, barba, afeitado clásico y más en China, N.L." />
+  <meta property="og:image" content="assets/logo.jpg" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <link rel="icon" href="assets/logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Barlow:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ---------- Tokens ---------- */
+    :root {
+      --navy: #0B1C3F;
+      /* shield navy */
+      --navy-soft: #14274d;
+      --royal: #2148B8;
+      /* barber-pole blue */
+      --red: #C8102E;
+      /* barber red */
+      --gold-1: #F0D88A;
+      --gold-2: #C9A24B;
+      --gold-3: #9C7A2E;
+      --gold-grad: linear-gradient(180deg, #F4E3A8 0%, #D9B65E 42%, #B98E36 100%);
+      --cream: #F5ECD6;
+      --ink: #F4EFE3;
+      --muted: #AAB4C8;
+      --hairline: rgba(201, 162, 75, 0.22);
+      --font-display: 'Cinzel', 'Times New Roman', serif;
+      --font-body: 'Barlow', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--font-body);
+      background: var(--navy);
+      overflow-x: hidden;
+      /* layered navy depth + faint gold spotlight from the top, like a shop mirror light */
+      background-image:
+        radial-gradient(130% 80% at 50% -10%, rgba(201, 162, 75, 0.10) 0%, rgba(201, 162, 75, 0) 45%),
+        radial-gradient(120% 100% at 50% 16%, #16294f 0%, var(--navy) 62%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .page {
+      position: relative;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(0.7rem, 2.3vh, 1.35rem);
+      padding: max(1rem, env(safe-area-inset-top)) 1.25rem max(1rem, env(safe-area-inset-bottom));
+      text-align: center;
+    }
+
+    /* ---------- Language toggle ---------- */
+    .lang {
+      position: absolute;
+      top: max(0.9rem, env(safe-area-inset-top));
+      right: 1.05rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.1rem;
+      font-family: var(--font-body);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 0.9rem;
+      z-index: 5;
+    }
+
+    .lang button {
+      appearance: none;
+      background: none;
+      border: 0;
+      color: var(--muted);
+      font: inherit;
+      /* >=44px touch target while keeping the text visually compact */
+      min-width: 44px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.35rem;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: color .15s ease;
+    }
+
+    .lang button[aria-pressed="true"] {
+      color: var(--gold-1);
+    }
+
+    .lang button:hover {
+      color: var(--ink);
+    }
+
+    .lang .sep {
+      color: rgba(255, 255, 255, 0.18);
+    }
+
+    .lang button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--gold-2);
+      outline-offset: 3px;
+    }
+
+    /* ---------- Logo ---------- */
+    .badge {
+      display: block;
+      line-height: 0;
+      width: clamp(124px, 25vw, 168px);
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px var(--hairline), 0 0 0 6px rgba(201, 162, 75, 0.06), 0 18px 44px rgba(0, 0, 0, 0.55);
+    }
+
+    .badge img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: block;
+    }
+
+    /* ---------- Eyebrow ---------- */
+    .eyebrow {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.42em;
+      text-indent: 0.42em;
+      font-size: clamp(0.62rem, 2.5vw, 0.78rem);
+      color: var(--gold-2);
+    }
+
+    /* ---------- Headline ---------- */
+    h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: 0.01em;
+      font-size: clamp(2.1rem, 9.5vw, 3.9rem);
+      text-transform: uppercase;
+      color: var(--cream);
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+    }
+
+    h1 .accent {
+      background: var(--gold-grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* ---------- Barber-pole signature divider ---------- */
+    .pole {
+      position: relative;
+      width: 15px;
+      height: clamp(48px, 8vh, 68px);
+      border-radius: 9px;
+      overflow: hidden;
+      border: 2px solid var(--gold-2);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 6px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .pole::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(45deg,
+          var(--red) 0 8px, #F3F1EA 8px 16px, var(--royal) 16px 24px);
+      /* tile = perpendicular cycle (24px) * sqrt(2); animating Y by one tile loops seamlessly */
+      background-size: 33.94px 33.94px;
+      animation: poleSpin 1.6s linear infinite;
+    }
+
+    .pole::after {
+      /* glass sheen */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 38%, rgba(0, 0, 0, 0.28) 100%);
+    }
+
+    @keyframes poleSpin {
+      to {
+        background-position: 0 33.94px;
+      }
+    }
+
+    /* ---------- Body copy ---------- */
+    .subline {
+      margin: 0;
+      max-width: 34ch;
+      color: var(--muted);
+      font-size: clamp(0.96rem, 3.4vw, 1.1rem);
+      line-height: 1.4;
+    }
+
+    .reassure {
+      margin: 0;
+      max-width: 36ch;
+      font-weight: 700;
+      font-size: clamp(1.12rem, 4.3vw, 1.42rem);
+      line-height: 1.22;
+      color: var(--ink);
+    }
+
+    .services {
+      margin: 0;
+      max-width: 40ch;
+      color: var(--muted);
+      font-size: clamp(0.88rem, 3.2vw, 1rem);
+      line-height: 1.45;
+    }
+
+    .services strong {
+      color: var(--gold-1);
+      font-weight: 600;
+    }
+
+    /* ---------- CTA ---------- */
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      margin-top: 0.2rem;
+      padding: 0.92rem 1.7rem;
+      min-height: 56px;
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: clamp(1.02rem, 4.2vw, 1.24rem);
+      color: #2A1A05;
+      background: var(--gold-grad);
+      border-radius: 11px;
+      box-shadow: 0 8px 22px rgba(201, 162, 75, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      transition: transform .12s ease, box-shadow .15s ease, filter .15s ease;
+    }
+
+    .cta:hover {
+      filter: brightness(1.04);
+      box-shadow: 0 10px 26px rgba(201, 162, 75, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    .cta:active {
+      transform: translateY(1px) scale(0.995);
+    }
+
+    .cta svg {
+      width: 1.15em;
+      height: 1.15em;
+      flex: none;
+    }
+
+    .call-alt {
+      margin: 0;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: clamp(0.86rem, 3.1vw, 0.96rem);
+      color: var(--muted);
+    }
+
+    .call-alt a {
+      color: var(--gold-1);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      white-space: nowrap;
+      /* taller hit area for thumbs without breaking the inline line */
+      display: inline-block;
+      padding: 0.4rem 0.2rem;
+    }
+
+    .call-alt a:hover {
+      border-bottom-color: var(--gold-1);
+    }
+
+    /* ---------- Visit ---------- */
+    .visit {
+      margin: 0;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: clamp(0.82rem, 3.1vw, 0.95rem);
+      color: var(--ink);
+      max-width: 40ch;
+    }
+
+    .visit .label {
+      color: var(--gold-2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+    }
+
+    .visit .addr {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .visit a {
+      color: var(--gold-1);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      white-space: nowrap;
+      display: inline-block;
+      padding: 0.35rem 0.2rem;
+    }
+
+    .visit a:hover {
+      border-bottom-color: var(--gold-1);
+    }
+
+    /* ---------- Hours ---------- */
+    .hours {
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem 0.7rem;
+      max-width: 38ch;
+      font-size: clamp(0.8rem, 3vw, 0.92rem);
+      line-height: 1.3;
+      color: var(--muted);
+    }
+
+    .hours .day {
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--gold-2);
+      font-size: 0.86em;
+      margin-right: 0.3em;
+    }
+
+    .hours .note {
+      flex-basis: 100%;
+      font-size: 0.9em;
+      font-style: italic;
+      color: rgba(170, 180, 200, 0.75);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <!-- ES | EN toggle (Spanish default) -->
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button id="btn-es" type="button" aria-pressed="true" lang="es">ES</button>
+      <span class="sep" aria-hidden="true">|</span>
+      <button id="btn-en" type="button" aria-pressed="false" lang="en">EN</button>
+    </div>
+
+    <!-- Logo -->
+    <a class="badge" href="tel:+528182069954" aria-label="Llamar a Legacy Barbershop, 81 8206 9954">
+      <img src="assets/logo.jpg" alt="Legacy Barbershop logo" width="168" height="168" />
+    </a>
+
+    <p class="eyebrow" data-es="Est. 2015 · China, N.L." data-en="Est. 2015 · China, N.L.">Est. 2015 · China, N.L.</p>
+
+    <!-- Headline -->
+    <h1>
+      <span data-es="SITIO" data-en="NEW SITE">SITIO</span><br />
+      <span data-es="NUEVO" data-en="IN THE">NUEVO</span><br />
+      <span class="accent" data-es="EN EL SILLÓN." data-en="BARBER'S CHAIR.">EN EL SILLÓN.</span>
+    </h1>
+
+    <!-- Signature barber pole -->
+    <span class="pole" role="img" aria-label="Poste de barbero"></span>
+
+    <p class="subline" data-es="Estamos afilando los detalles de nuestro nuevo sitio web."
+      data-en="We're sharpening up the details of our new website.">
+      Estamos afilando los detalles de nuestro nuevo sitio web.
+    </p>
+
+    <p class="reassure" data-es="Legacy Barbershop sigue completamente abierto y listo para atenderte en China, N.L."
+      data-en="Legacy Barbershop is fully open and ready for you in China, N.L.">
+      Legacy Barbershop sigue completamente abierto y listo para atenderte en China, N.L.
+    </p>
+
+    <p class="services" data-es="Cortes, barba, afeitado clásico, diseños y más — <strong>pasa o llámanos.</strong>"
+      data-en="Haircuts, beard trims, classic shaves, line-ups &amp; more — <strong>walk in or call ahead.</strong>">
+      Cortes, barba, afeitado clásico, diseños y más — <strong>pasa o llámanos.</strong>
+    </p>
+
+    <!-- Primary conversion: WhatsApp (prefilled message, swaps with language) -->
+    <a class="cta"
+      href="https://wa.me/528182069954?text=Hola%20Legacy%20Barbershop%2C%20me%20gustar%C3%ADa%20agendar%20un%20corte."
+      data-href-es="https://wa.me/528182069954?text=Hola%20Legacy%20Barbershop%2C%20me%20gustar%C3%ADa%20agendar%20un%20corte."
+      data-href-en="https://wa.me/528182069954?text=Hi%20Legacy%20Barbershop%2C%20I%27d%20like%20to%20book%20a%20haircut."
+      target="_blank" rel="noopener" data-es="AGENDA POR WHATSAPP" data-en="BOOK ON WHATSAPP">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+          d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.02zM12.05 20.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z" />
+      </svg>
+      <span data-es="AGENDA POR WHATSAPP" data-en="BOOK ON WHATSAPP">AGENDA POR WHATSAPP</span>
+    </a>
+
+    <p class="call-alt">
+      <span data-es="o llámanos:" data-en="or call us:">o llámanos:</span>
+      <a href="tel:+528182069954">81 8206 9954</a>
+    </p>
+
+    <!-- Visit -->
+    <p class="visit">
+      <span class="label" data-es="VISÍTANOS" data-en="VISIT US">VISÍTANOS</span>
+      <span class="addr"> — Arturo B. de la Garza 510, Col. Centro, China, N.L.</span> ·
+      <a href="https://www.google.com/maps/dir/?api=1&amp;destination=25.7069702,-99.2345731" target="_blank"
+        rel="noopener" data-es="Cómo llegar" data-en="Get Directions">Cómo llegar</a>
+    </p>
+
+    <!-- Hours -->
+    <p class="hours">
+      <span><span class="day" data-es="Lun–Vie" data-en="Mon–Fri">Lun–Vie</span>10am–7pm</span>
+      <span><span class="day" data-es="Sáb" data-en="Sat">Sáb</span>9am–7pm</span>
+      <span><span class="day" data-es="Dom" data-en="Sun">Dom</span>12–5pm</span>
+      <span class="note" data-es="Horarios especiales a tu disposición, solo pídelos."
+        data-en="Special hours available on request.">Horarios especiales a tu disposición, solo pídelos.</span>
+    </p>
+  </main>
+
+  <!-- LocalBusiness (HairSalon/BarberShop) JSON-LD. Hours confirmed with the shop; special accommodations available on request. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Legacy Barbershop",
+    "image": "assets/logo.jpg",
+    "url": "https://legacybarber.mx",
+    "telephone": "+52-81-8206-9954",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Arturo B. de la Garza 510, Col. Centro",
+      "addressLocality": "China",
+      "addressRegion": "NL",
+      "postalCode": "67300",
+      "addressCountry": "MX"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 25.7069702,
+      "longitude": -99.2345731
+    },
+    "areaServed": "China, Nuevo León",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "10:00",
+        "closes": "19:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "19:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Sunday",
+        "opens": "12:00",
+        "closes": "17:00"
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    (function () {
+      var KEY = 'legacy-lang';
+      var btnEs = document.getElementById('btn-es');
+      var btnEn = document.getElementById('btn-en');
+      var nodes = document.querySelectorAll('[data-es][data-en]');
+      var hrefNodes = document.querySelectorAll('[data-href-es][data-href-en]');
+
+      function apply(lang) {
+        var isEn = lang === 'en';
+        document.documentElement.lang = isEn ? 'en' : 'es';
+
+        nodes.forEach(function (el) {
+          var val = isEn ? el.getAttribute('data-en') : el.getAttribute('data-es');
+          if (val == null) return;
+          el.innerHTML = val; // hand-written copy may contain <strong>
+        });
+
+        hrefNodes.forEach(function (el) {
+          var url = isEn ? el.getAttribute('data-href-en') : el.getAttribute('data-href-es');
+          if (url) el.setAttribute('href', url);
+        });
+
+        btnEs.setAttribute('aria-pressed', String(!isEn));
+        btnEn.setAttribute('aria-pressed', String(isEn));
+
+        try { localStorage.setItem(KEY, lang); } catch (e) { }
+      }
+
+      // Spanish is the default. Honor a saved choice, else an English browser, else Spanish.
+      var saved = null;
+      try { saved = localStorage.getItem(KEY); } catch (e) { }
+      var start = saved || ((navigator.language || '').toLowerCase().indexOf('en') === 0 ? 'en' : 'es');
+
+      btnEs.addEventListener('click', function () { apply('es'); });
+      btnEn.addEventListener('click', function () { apply('en'); });
+
+      apply(start);
+    })();
+  </script>
+</body>
+
+</html>
